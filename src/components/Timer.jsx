@@ -8,7 +8,9 @@ function Timer() {
         <h2>Pomodoro Timer</h2>
 
         <button className="settings-button">
-          ⚙
+          <span className="material-symbols-outlined">
+            settings
+          </span>
         </button>
       </div>
 
