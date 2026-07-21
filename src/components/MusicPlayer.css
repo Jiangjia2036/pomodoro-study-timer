@@ -126,5 +126,11 @@
     line-height:1;
 }
 
-
+.spotify-player{
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    
+}
 
