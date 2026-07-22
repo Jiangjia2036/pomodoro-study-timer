@@ -66,7 +66,7 @@ function Timer() {
 
       <div className="button-group">
 
-        <button onClick = {hanleStart} disabled = {isRUnning}>
+        <button onClick = {handleStart} disabled = {isRUnning}>
           Start
           </button>
         <button onClick = {handlePause} disabled={!isRunning}>
