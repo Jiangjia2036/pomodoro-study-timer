@@ -19,9 +19,11 @@ const App = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-
   const audioRef = useRef(null);
-  
+  const shouldAutoPlayRef = useRef(false); //will load the song automatically
+  const [volume, setVolume]= useState(0.6); //set the volume, 0.6 means the starting volume when it first launch
+  const previousVolumeRef=useRef(0.6);
+
   const songs=[
     {src:song1, title:"Lofi Beat"},
     {src:song2, title:"Long Night Ride"},
@@ -44,14 +46,12 @@ const App = () => {
 
     if (audioRef.current) {
       audioRef.current.currentTime = newTime;
-      setCurrentTime(e.target.value); //line updates the number displayed on the page
+      setCurrentTime(newTime); //line updates the number displayed on the page
     }
   };
   
   const handleNext=() => {
-    if(audioRef.current){
-      audioRef.current.pause();
-    }
+    shouldAutoPlayRef.current= true;
     setIsPlaying(false);
     setCurrentSongIndex(
       (currentIndex) => (currentIndex + 1) % songs.length
@@ -61,9 +61,8 @@ const App = () => {
   };
   
   const handlePrevious=() => {
-    if(audioRef.current){
-      audioRef.current.pause();
-    }
+    shouldAutoPlayRef.current= true;
+
     setCurrentSongIndex(
       (currentIndex) => 
         (currentIndex - 1 + songs.length) % songs.length
@@ -84,6 +83,7 @@ const App = () => {
   const handleLoadedMetadata = () => {
     if (audioRef.current) {
       setDuration(audioRef.current.duration);
+      audioRef.current.volume=volume; 
     }
   };
 
@@ -118,14 +118,71 @@ const App = () => {
       handlePlay();
     }
   };
-  
 
+  const handleCanPlay= async () => {
+    if (!shouldAutoPlayRef.current || !audioRef.current) 
+      {                          //check to see if automatic play is requested or not if not then stop this
+      return;
+  }
+   
+  try{
+    await audioRef.current.play();
+    setIsPlaying(true);
+  }
+  catch (error)
+  {
+  console.error("Cannot play the song", error);
+  setIsPlaying(false);
+  }
+  finally
+  {
+    shouldAutoPlayRef.current=false;
+  }
+};
+
+const handleVolumeChange = (e) => {
+  const newVolume = Number(e.target.value);
+
+  setVolume(newVolume);
+  
+  if (newVolume>0)
+  {
+    previousVolumeRef.current=newVolume;
+  }
+
+  if (audioRef.current) {
+    audioRef.current.volume = newVolume;
+  }
+};
+
+const handleMute =() => {
+      if(!audioRef.current)
+      {
+        return;
+      }
+
+      if(volume>0)
+      {
+        previousVolumeRef.current=volume; // this part the system will remeber the current volume before mute
+        setVolume(0) 
+      audioRef.current.volume=0;
+      }
+      else{
+        const restoredVolume= previousVolumeRef.current || 0.6;
+        setVolume(restoredVolume);
+        audioRef.current.volume= restoredVolume;
+      }
+    };
   return (
     <div className="music-card">
-      <img src={logo} 
-      alt="Music Player"
-       className="music-image" 
-       />
+    <div className="music-notes">♪ ♫ ♪</div>
+      <img
+  src={logo}
+  alt="Music Player"
+  className={`music-image ${
+    isPlaying ? "music-image-playing" : ""
+  }`}
+/>
 
       <h3 className="music-title">
         {currentSong.title}
@@ -143,17 +200,47 @@ const App = () => {
       key={currentSongIndex}
       ref={audioRef}
       src={currentSong.src}
+      onCanPlay={handleCanPlay}
       onTimeUpdate={handleTimeUpdate}
       onLoadedMetadata={handleLoadedMetadata}
       onPlay={() => setIsPlaying(true)}
       onPause={() => setIsPlaying(false)}
       onEnded={handleNext}
       /> 
+      
+
+     <div className="volume-control">
+
+      <button
+       type="button"
+       className="volume-button"
+       onClick={handleMute}
+       aria-label={volume ===0 ? "Turn volume on" : "Mute volumr"}
+       >
+      <span className="material-symbols-outlined">
+        {volume === 0? "volume_off" : "volume_up"}
+      </span>
+      </button>
+
+
+      <input
+      className="volume-slider"
+      type="range"
+      min="0"
+      max="1"
+      step="0.01"
+      value={volume}
+      onChange={handleVolumeChange}
+      aria-label="Volume"
+      />
+     </div>
+
 
       <div className="time-display">
         <p>{formatTime(currentTime)}</p>
         <p>{formatTime(duration)}</p>
       </div>
+
 
       <div className="music-controls">  
         <button
