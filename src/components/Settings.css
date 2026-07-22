@@ -2,13 +2,16 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
+
 }
 
 .settings-toggle {
   background: none;
   border: none;
   font-size: 1.5rem;
+
   cursor: pointer;
+
   padding: 0.4rem;
 }
 
@@ -23,6 +26,7 @@
   min-width: 220px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   z-index: 10;
+  color: white;
 }
 
 .settings-field {
@@ -40,6 +44,7 @@
   padding: 0.3rem;
   border-radius: 4px;
   border: 1px solid #444;
+
   background: #2a2a2a;
   color: white;
 }
