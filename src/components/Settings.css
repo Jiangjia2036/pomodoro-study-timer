@@ -1,0 +1,48 @@
+.settings-wrapper {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.settings-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.4rem;
+}
+
+.settings-panel {
+  position: absolute;
+  top: 2.8rem;
+  right: 0;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 1rem;
+  min-width: 220px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.75rem;
+}
+
+.settings-field label {
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.settings-field input {
+  padding: 0.3rem;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #2a2a2a;
+  color: white;
+}
+.settings-field-center {
+  align-items: center;
+}
