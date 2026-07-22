@@ -5,9 +5,7 @@ function Timer() {
       <div className="timer-header">
         <h2>Pomodoro Timer</h2>
 
-        <button className="settings-button">
-          Setting
-        </button>
+        
       </div>
 
       <h1 className="timer-display">
