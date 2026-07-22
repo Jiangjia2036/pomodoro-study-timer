@@ -115,3 +115,76 @@
     font-size: 34px;
     line-height: 1;
 }
+
+
+.session-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 20px;
+}
+
+.session-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 0.55;
+    font-weight: 600;
+}
+
+.toggle-group {
+    display: flex;
+    background:rgba(255,255,255,0.08);
+    border-radius:30px;
+    padding: 4px;
+}
+
+.toggle-button {
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    
+    border:none;
+    background: transparent;
+    color: rgba(223,240,255,0.75);
+
+    padding:8px 22px;
+    border-radius: 26px;
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background 0.25s ease, color 0.25s ease; 
+
+}
+
+.toggle-button.active{
+    background: white;
+    color: #1b2735;
+}
+
+.toggle-button:disabled{
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+.phase-badge {
+    display: block;
+    text-align: center;
+
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    opacity: 0.5;
+    margin-bottom: 6px;
+}
+
+.button-group button:disabled {opacity: 0.5;
+cursor: not-allowed;
+transform: none;
+box-shadow:none;
+}

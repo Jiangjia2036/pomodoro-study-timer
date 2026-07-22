@@ -1,10 +1,14 @@
 import {useState, useEffect, useRef} from "react";
 import "./Timer.css";
 
+const DURATIONS = {
+  short: {work: 25 * 60, break: 5 * 60, label: "25/5" },
+  long: {work: 50 * 60, break: 10 * 60, label: "50/10" },
+};
 function Timer() {
-  const WORK_TIME = 25 * 60; // 25 mins in seconds
-
-  const [secondsLeft, setSecondsLeft] = useState (WORK_TIME);
+  const [mode, setMode] = useState("short"); //"short" or "long"
+  const [phase, setPhase] = useState("work"); // "work" or "break"
+  const [secondsLeft, setSecondsLeft] = useState (DURATIONS["short"].work);
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef(null);
 
@@ -15,7 +19,7 @@ function Timer() {
         setSecondsLeft ((prev) => {
           if (prev <= 1) {
             clearInterval (intervalRef.current);
-            setIsRunning(false);
+            handlePhaseComplete();
             return 0;
           }
           return prev - 1;
@@ -26,6 +30,18 @@ function Timer() {
     // cleanup on pause so intervals don't stack
     return () => clearInterval(intervalRef.current);
   }, [isRunning]);
+
+  // called when countdown hits 0 - swaps btwn work and break
+  const handlePhaseComplete = () => {
+    setIsRunning(false);
+
+    if (phase === "work") {setPhase("break");
+      setSecondsLeft(DURATIONS[mode].break);
+    } else {
+      setPhase("work");
+      setSecondsLeft(DURATIONS[mode].work);
+    }
+  };
 
   const handleStart = () => {
     if (secondsLeft === 0) return; // nothing to start if timer is done
@@ -38,7 +54,16 @@ function Timer() {
 
   const handleReset = () => {
     setIsRunning(false);
-    setSecondsLeft(WORK_TIME);
+    setPhase("work");
+    setSecondsLeft(DURATIONS[mode].work);
+  };
+
+  // switching mode resets everything to that mode's work time
+  const handleModeChange = (newMode) => {
+    setIsRunning(false);
+    setMode(newMode);
+    setPhase("work");
+    setSecondsLeft(DURATIONS[newMode].work);
   };
 
   // format seconds -> MM:SS
@@ -61,8 +86,33 @@ function Timer() {
         </button>
       </div>
 
+      <div className="session-selector">
+        <span className="session-label"> Session Length</span>
+        <div className="toggle-group">
+        <button
+          className={mode === "short" ? "toggle-button active" : "toggle-button"}
+          onClick={() => handleModeChange("short")}
+          disabled={isRunning}
+          >
+            25 min
+          </button>
+          <button
+            className={mode === "long" ? "toggle-button active" : "toggle-button"}
+            onClick={() => handleModeChange("long")}
+            disabled={isRunning}
+            >
+              50 min
+            </button>
+          </div>
+      </div>
+
+      <div className="phase-badge"> 
+        {phase === "work" ? "Focus" : "Break"}
+        </div>
+
       <h1 className="timer-display"> 
-        {formatTime(secondsLeft)}</h1>
+        {formatTime(secondsLeft)}
+        </h1>
 
       <div className="button-group">
 
