@@ -21,7 +21,8 @@ const App = () => {
   const [duration, setDuration] = useState(0);
 
   const audioRef = useRef(null);
-  
+  const shouldAutoPlayRef = useRef(false); //will load the song automatically
+
   const songs=[
     {src:song1, title:"Lofi Beat"},
     {src:song2, title:"Long Night Ride"},
@@ -49,9 +50,7 @@ const App = () => {
   };
   
   const handleNext=() => {
-    if(audioRef.current){
-      audioRef.current.pause();
-    }
+    shouldAutoPlayRef.current= true;
     setIsPlaying(false);
     setCurrentSongIndex(
       (currentIndex) => (currentIndex + 1) % songs.length
@@ -61,9 +60,8 @@ const App = () => {
   };
   
   const handlePrevious=() => {
-    if(audioRef.current){
-      audioRef.current.pause();
-    }
+    shouldAutoPlayRef.current= true;
+
     setCurrentSongIndex(
       (currentIndex) => 
         (currentIndex - 1 + songs.length) % songs.length
@@ -118,7 +116,27 @@ const App = () => {
       handlePlay();
     }
   };
-  
+
+  const handleCanPlay= async () => {
+    if (!shouldAutoPlayRef.current || !audioRef.current) 
+      {                          //check to see if automatic play is requested or not if not then stop this
+      return;
+  }
+   
+  try{
+    await audioRef.current.play();
+    setIsPlaying(true);
+  }
+  catch (error)
+  {
+  console.error("Cannot play the song", error);
+  setIsPlaying(false);
+  }
+  finally
+  {
+    shouldAutoPlayRef.current=false;
+  }
+};
 
   return (
     <div className="music-card">
@@ -143,6 +161,7 @@ const App = () => {
       key={currentSongIndex}
       ref={audioRef}
       src={currentSong.src}
+      onCanPlay={handleCanPlay}
       onTimeUpdate={handleTimeUpdate}
       onLoadedMetadata={handleLoadedMetadata}
       onPlay={() => setIsPlaying(true)}
