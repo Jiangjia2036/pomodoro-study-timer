@@ -1,3 +1,5 @@
+import "./Timer.css";
+
 function Timer() {
   return (
     <div className="timer-card">
@@ -6,10 +8,15 @@ function Timer() {
         <h2>Pomodoro Timer</h2>
 
         
+        <button className="settings-button">
+          <span className="material-symbols-outlined">
+            settings
+          </span>
+        </button>
       </div>
 
       <h1 className="timer-display">
-        25:00
+        25:00  { /*need to be change */ }
       </h1>
 
       <div className="button-group">

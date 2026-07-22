@@ -1,0 +1,136 @@
+
+.music-card {
+    width: 13rem;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.35),
+        0 0 20px rgba(255,255,255,0.08);
+
+    color: white;
+}
+
+
+
+.music-card img {
+
+    width: 100%;
+    height: 8rem;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.3);
+}
+
+
+
+.music-card input[type="range"] {
+
+    width:100%;
+
+    height:4px;
+
+    margin-top:10px;
+
+    accent-color:white;
+
+    cursor:pointer;
+}
+
+
+.music-card .time-display {
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:6px;
+
+    color:rgba(255,255,255,0.8);
+
+    font-size:0.7rem;
+}
+
+
+.music-card .time-display p {
+
+    margin:0;
+
+    color:white;
+
+}
+
+
+
+.music-card button {
+
+    width:45px;
+
+    height:45px;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    margin:15px auto 5px;
+
+
+    border:none;
+
+    border-radius:50%;
+
+
+    background:white;
+
+    color:#222;
+
+
+    font-size:22px;
+
+    cursor:pointer;
+
+
+    transition:0.3s;
+}
+
+
+
+.music-card button:hover {
+
+    transform:scale(1.1);
+
+    background:#eeeeee;
+
+}
+
+
+.music-card .material-symbols-outlined {
+
+    font-size:35px;
+
+    line-height:1;
+}
+
+.spotify-player{
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    
+}
+
