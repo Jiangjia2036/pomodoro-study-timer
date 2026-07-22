@@ -37,15 +37,15 @@ function Timer() {
   };
 
   const handleReset = () => {
-    setIsRunning (false);
-    setSecindsLeft (WORK_TIME);
+    setIsRunning(false);
+    setSecondsLeft(WORK_TIME);
   };
 
   // format seconds -> MM:SS
   const formatTime = (totalSeconds) => {
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
-    return ' ${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}';
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
   };
 
   return (
@@ -66,7 +66,7 @@ function Timer() {
 
       <div className="button-group">
 
-        <button onClick = {handleStart} disabled = {isRUnning}>
+        <button onClick = {handleStart} disabled = {isRunning}>
           Start
           </button>
         <button onClick = {handlePause} disabled={!isRunning}>
