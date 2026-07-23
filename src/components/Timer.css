@@ -187,4 +187,27 @@
 cursor: not-allowed;
 transform: none;
 box-shadow:none;
+.music-controls{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:14px;
+    margin-top: 16px;
+}
+
+.music-controls button{
+    width:3rem;
+    height:3rem;
+    margin:0;
+    flex: 0 0 3rem;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+    border: none;
+    border-radius: 50%;
+    cursor:pointer;
 }
