@@ -14,10 +14,7 @@ function App() {
 
   return (
     <div className="app">
-      <Timer
-        isSettingsOpen={isSettingsOpen}
-        setIsSettingsOpen={setIsSettingsOpen}
-      />
+      <Timer setIsSettingsOpen={setIsSettingsOpen} />
       <MusicPlayer />
       <Settings
         bgColor={bgColor}

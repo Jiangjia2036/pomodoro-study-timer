@@ -183,10 +183,12 @@
     margin-bottom: 6px;
 }
 
-.button-group button:disabled {opacity: 0.5;
-cursor: not-allowed;
-transform: none;
-box-shadow:none;
+.button-group button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
 .music-controls{
     width: 100%;
     display: flex;

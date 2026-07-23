@@ -5,7 +5,7 @@ const DURATIONS = {
   short: {work: 25 * 60, break: 5 * 60, label: "25/5" },
   long: {work: 50 * 60, break: 10 * 60, label: "50/10" },
 };
-function Timer() {
+function Timer({ setIsSettingsOpen }) {
   const [mode, setMode] = useState("short"); //"short" or "long"
   const [phase, setPhase] = useState("work"); // "work" or "break"
   const [secondsLeft, setSecondsLeft] = useState (DURATIONS["short"].work);
@@ -80,7 +80,7 @@ function Timer() {
 
         <button
           className="settings-button"
-          onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+          onClick={() => setIsSettingsOpen((prev) => !prev)}
         >
           <span className="material-symbols-outlined">settings</span>
         </button>
