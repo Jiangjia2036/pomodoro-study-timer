@@ -73,7 +73,6 @@ function Timer() {
     return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
   };
 
-function Timer({ isSettingsOpen, setIsSettingsOpen }) {
   return (
     <div className="timer-card">
       <div className="timer-header">
@@ -114,12 +113,8 @@ function Timer({ isSettingsOpen, setIsSettingsOpen }) {
       <h1 className="timer-display"> 
         {formatTime(secondsLeft)}
         </h1>
-      <h1 className="timer-display">
-        25:00 {/* need to be changed */}
-      </h1>
-
+      
       <div className="button-group">
-
         <button onClick = {handleStart} disabled = {isRunning}>
           Start
           </button>
