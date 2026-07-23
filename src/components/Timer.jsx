@@ -123,6 +123,18 @@ function Timer({ setIsSettingsOpen }) {
           </button>
         <button onClick = {handleReset}>Reset</button>
       </div>
+
+      <div className="study-note">
+        <label htmlFor="study-note">
+          Wake Up! Study! Exam! 
+        </label>
+
+        <textarea
+            id="study-note"
+            placeholder="What are your goals for today?"
+            rows="3"
+        />
+      </div>
     </div>
   );
 }
