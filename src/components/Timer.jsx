@@ -8,7 +8,7 @@ function Timer({ isSettingsOpen, setIsSettingsOpen }) {
 
         <button
           className="settings-button"
-          onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+          onClick={() => setIsSettingsOpen((prev) => !prev)}
         >
           <span className="material-symbols-outlined">settings</span>
         </button>
