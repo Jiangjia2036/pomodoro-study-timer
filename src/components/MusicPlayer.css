@@ -83,33 +83,17 @@
 .music-card button {
 
     width:45px;
-
     height:45px;
-
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
     margin:15px auto 5px;
-
-
     border:none;
-
     border-radius:50%;
-
-
     background:white;
-
     color:#222;
-
-
     font-size:22px;
-
     cursor:pointer;
-
-
     transition:0.3s;
 
     
@@ -123,9 +107,7 @@
 }
 
 .music-card button:hover {
-
     transform:scale(1.1);
-
     background:#eeeeee;
 
 }
@@ -141,7 +123,6 @@
 .spotify-player{
     display: block;
     width: 100%;
-    border: none;
     border-radius: 12px;
     
 }
@@ -180,7 +161,6 @@
 
 .music-card .volume-control .material-symbols-outlined {
     flex-shrink: 0;
-
     color: white;
     font-size: 24px;
 }
@@ -204,9 +184,6 @@
 
     color: white;
     background:transparent;
-    border: none;
-    border: none;
-    box-shadow: none;
 
 }
 
