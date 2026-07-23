@@ -150,7 +150,7 @@ function Timer({ setIsSettingsOpen }) {
             onClick={() => handleModeChange("demo")}
             disabled={isRunning}
           >
-            10/10 Demo
+            10sec / 10sec Demo
           </button>
 
           <button
@@ -158,7 +158,7 @@ function Timer({ setIsSettingsOpen }) {
             onClick={() => handleModeChange("short")}
             disabled={isRunning}
           >
-            25/5
+            25mins / 5mins 
           </button>
 
           <button
@@ -166,7 +166,7 @@ function Timer({ setIsSettingsOpen }) {
             onClick={() => handleModeChange("long")}
             disabled={isRunning}
           >
-            50/10
+            50mins / 10mins
           </button>
         </div>
       </div>
