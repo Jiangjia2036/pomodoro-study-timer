@@ -92,8 +92,6 @@
     align-items:center;
 
     justify-content:center;
-
-
     margin:15px auto 5px;
 
 
@@ -113,9 +111,16 @@
 
 
     transition:0.3s;
+
+    
 }
 
-
+.music-card .music-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
 
 .music-card button:hover {
 
